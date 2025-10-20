@@ -1,38 +1,40 @@
-package calculator.domain;
+package calculator.parser;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
 import static calculator.constant.Message.*;
 
-public class Separator {
+public class DelimiterParser implements InputParser {
 
     private static final String DEFAULT_DELIMITERS = ",|:";
     private static final String CUSTOM_PREFIX = "//";
     private static final String CUSTOM_SUFFIX = "\\n";
 
-    private Separator() {
+    public DelimiterParser() {
     }
 
-    public static List<String> splitByDelimiter(String inputValue) {
+    @Override
+    public List<String> parser(String inputValue) {
         if(isCustomDelimiterFormat(inputValue)){
             return splitWithCustomDelimiter(inputValue);
         }
         return splitWithDefaultDelimiter(inputValue);
     }
 
+
     private static boolean isCustomDelimiterFormat(String inputValue) {
         return inputValue.startsWith(CUSTOM_PREFIX) && inputValue.contains(CUSTOM_SUFFIX);
     }
 
-    private static List<String> splitWithDefaultDelimiter(String inputValue) {
+    private List<String> splitWithDefaultDelimiter(String inputValue) {
         if(inputValue.isEmpty()){
             return List.of();
         }
         return List.of(inputValue.split(DEFAULT_DELIMITERS));
     }
 
-    private static List<String> splitWithCustomDelimiter(String inputValue) {
+    private List<String> splitWithCustomDelimiter(String inputValue) {
         String delimiter = parseCustomDelimiter(inputValue);
         String numbersPart = extractNumberPart(inputValue);
         if(numbersPart.isEmpty()){
@@ -41,19 +43,19 @@ public class Separator {
         return List.of(numbersPart.split(Pattern.quote(delimiter)));
     }
 
-    private static String parseCustomDelimiter(String inputValue) {
+    private String parseCustomDelimiter(String inputValue) {
         int delimiterEndIndex = inputValue.indexOf(CUSTOM_SUFFIX);
         String delimiter = inputValue.substring(CUSTOM_PREFIX.length(), delimiterEndIndex);
         validateDelimiter(delimiter);
         return delimiter;
     }
 
-    private static String extractNumberPart(String inputValue) {
+    private String extractNumberPart(String inputValue) {
         int delimiterEndIndex = inputValue.indexOf(CUSTOM_SUFFIX);
         return inputValue.substring(delimiterEndIndex + 2);
     }
 
-    private static void validateDelimiter(String delimiter) {
+    private void validateDelimiter(String delimiter) {
         if(delimiter.isBlank()){
             throw new IllegalArgumentException(ERROR_EMPTY_DELIMITER.getMessage());
         }
@@ -64,4 +66,6 @@ public class Separator {
             throw new IllegalArgumentException(ERROR_DELIMITER_NUMERIC.getMessage());
         }
     }
+
+
 }
