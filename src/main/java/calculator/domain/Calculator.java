@@ -18,5 +18,4 @@ public class Calculator {
     public int sum() {
         return operands.sum();
     }
-
 }

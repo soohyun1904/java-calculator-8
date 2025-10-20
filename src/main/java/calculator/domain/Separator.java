@@ -55,13 +55,13 @@ public class Separator {
 
     private static void validateDelimiter(String delimiter) {
         if(delimiter.isBlank()){
-            throw new IllegalArgumentException(ERROR_EMPTY_DELIMITER);
+            throw new IllegalArgumentException(ERROR_EMPTY_DELIMITER.getMessage());
         }
         if(delimiter.length()>1){
-            throw new IllegalArgumentException(ERROR_DELIMITER_LENGTH);
+            throw new IllegalArgumentException(ERROR_DELIMITER_LENGTH.getMessage());
         }
         if(Character.isDigit(delimiter.charAt(0))){
-            throw new IllegalArgumentException(ERROR_DELIMITER_NUMERIC);
+            throw new IllegalArgumentException(ERROR_DELIMITER_NUMERIC.getMessage());
         }
     }
 }

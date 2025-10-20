@@ -1,9 +1,11 @@
 package calculator.view;
 
-import static calculator.constant.Message.INPUT_MESSAGE;
-import static calculator.constant.Message.OUTPUT_FORMAT;
-
 public class OutputView {
+    public static final String INPUT_MESSAGE = "덧셈할 문자열을 입력해 주세요.";
+    public static final String OUTPUT_FORMAT = "결과 : ";
+    
+    private OutputView() {
+    }
 
     public static void printStartMessage(){
         System.out.println(INPUT_MESSAGE);

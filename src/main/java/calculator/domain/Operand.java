@@ -18,13 +18,13 @@ public class Operand {
             int number = Integer.parseInt(numbersPart.trim());
             return new Operand(number);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException(NUMBER_PARSE_ERROR);
+            throw new IllegalArgumentException(NUMBER_PARSE_ERROR.getMessage());
         }
     }
 
     private void validate(int value) {
         if (value < 0) {
-            throw new IllegalArgumentException(NEGATIVE_NOT_ALLOWED);
+            throw new IllegalArgumentException(NEGATIVE_NOT_ALLOWED.getMessage());
         }
     }
 
