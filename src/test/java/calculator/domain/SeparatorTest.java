@@ -68,7 +68,7 @@ public class SeparatorTest {
         String input = "//\\n";
         assertThatThrownBy(() -> Separator.splitByDelimiter(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ERROR_EMPTY_DELIMITER);
+                .hasMessage(ERROR_EMPTY_DELIMITER.getMessage());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class SeparatorTest {
         String input ="//;;\\n1;;2;;3;;";
         assertThatThrownBy(() -> Separator.splitByDelimiter(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ERROR_DELIMITER_LENGTH);
+                .hasMessage(ERROR_DELIMITER_LENGTH.getMessage());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class SeparatorTest {
         String input = "//7\\n17273";
         assertThatThrownBy(() -> Separator.splitByDelimiter(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ERROR_DELIMITER_NUMERIC);
+                .hasMessage(ERROR_DELIMITER_NUMERIC.getMessage());
     }
 
 }

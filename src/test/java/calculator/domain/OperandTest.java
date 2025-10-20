@@ -30,7 +30,7 @@ public class OperandTest {
         String input = "2147483648";
         assertThatThrownBy(() -> Operand.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NUMBER_PARSE_ERROR);
+                .hasMessage(NUMBER_PARSE_ERROR.getMessage());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class OperandTest {
         String input = "a";
         assertThatThrownBy(() -> Operand.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NUMBER_PARSE_ERROR);
+                .hasMessage(NUMBER_PARSE_ERROR.getMessage());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class OperandTest {
         String input = "-1";
         assertThatThrownBy(() -> Operand.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NEGATIVE_NOT_ALLOWED);
+                .hasMessage(NEGATIVE_NOT_ALLOWED.getMessage());
     }
 
 
