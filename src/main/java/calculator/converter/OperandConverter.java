@@ -4,7 +4,6 @@ import calculator.domain.Operand;
 import static calculator.constant.Message.NUMBER_PARSE_ERROR;
 
 public class OperandConverter {
-
     public OperandConverter() {
     }
 

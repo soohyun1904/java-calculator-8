@@ -1,6 +1,5 @@
 package calculator.controller;
 
-import calculator.domain.Calculator;
 import calculator.service.CalculatorService;
 import calculator.view.InputView;
 import calculator.view.OutputView;

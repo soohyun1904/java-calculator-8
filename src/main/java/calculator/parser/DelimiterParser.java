@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 import static calculator.constant.Message.*;
 
 public class DelimiterParser implements InputParser {
-
     private static final String DEFAULT_DELIMITERS = ",|:";
     private static final String CUSTOM_PREFIX = "//";
     private static final String CUSTOM_SUFFIX = "\\n";
@@ -21,7 +20,6 @@ public class DelimiterParser implements InputParser {
         }
         return splitWithDefaultDelimiter(inputValue);
     }
-
 
     private static boolean isCustomDelimiterFormat(String inputValue) {
         return inputValue.startsWith(CUSTOM_PREFIX) && inputValue.contains(CUSTOM_SUFFIX);
@@ -66,6 +64,4 @@ public class DelimiterParser implements InputParser {
             throw new IllegalArgumentException(ERROR_DELIMITER_NUMERIC.getMessage());
         }
     }
-
-
 }
