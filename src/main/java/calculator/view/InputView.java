@@ -1,12 +1,15 @@
 package calculator.view;
 
-import camp.nextstep.edu.missionutils.Console;
+import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
-    private InputView() {
+    public static final String INPUT_MESSAGE = "덧셈할 문자열을 입력해 주세요.";
+
+    public InputView() {
     }
 
-    public static String readInput(){
-        return Console.readLine();
+    public String readInput(){
+        System.out.println(INPUT_MESSAGE);
+        return readLine();
     }
 }
