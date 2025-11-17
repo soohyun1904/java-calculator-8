@@ -11,8 +11,11 @@ public class OperandConverter {
         if(numberPart.isEmpty()){
             return new Operand(0);
         }
-
         try{
+            if(numberPart.contains(".")){
+                double number = Double.parseDouble(numberPart);
+                return new Operand(number);
+            }
             int number = Integer.parseInt(numberPart);
             return new Operand(number);
         }catch (NumberFormatException e){

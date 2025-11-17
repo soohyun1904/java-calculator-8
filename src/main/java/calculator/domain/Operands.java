@@ -3,7 +3,7 @@ package calculator.domain;
 import java.util.Iterator;
 import java.util.List;
 
-public class Operands implements Iterable<Integer> {
+public class Operands implements Iterable<Number> {
     private final List<Operand> operands;
 
     public Operands(List<Operand> operands) {
@@ -11,7 +11,7 @@ public class Operands implements Iterable<Integer> {
     }
 
     @Override
-    public Iterator<Integer> iterator() {
+    public Iterator<Number> iterator() {
         return operands.stream()
                 .map(Operand::getValue)
                 .iterator();

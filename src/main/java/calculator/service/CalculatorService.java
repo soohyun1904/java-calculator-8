@@ -14,7 +14,7 @@ public class CalculatorService {
         this.calculatorFactory = calculatorFactory;
     }
 
-    public int calculate(String inputValue){
+    public Number calculate(String inputValue){
         Operands operands = operandFactory.createForm(inputValue);
         Calculator calculator = calculatorFactory.createForm(operands);
         return calculator.sum();

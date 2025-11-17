@@ -6,7 +6,15 @@ public class OutputView {
     public OutputView() {
     }
 
-    public void printResultMessage(int result){
-        System.out.println(OUTPUT_FORMAT + result);
+    public void printResultMessage(Number result){
+        if(isInteger(result)){
+            System.out.println(OUTPUT_FORMAT + result.intValue());
+            return;
+        }
+        System.out.println(OUTPUT_FORMAT + result.doubleValue());
+    }
+
+    private boolean isInteger(Number result) {
+        return result instanceof Integer;
     }
 }
