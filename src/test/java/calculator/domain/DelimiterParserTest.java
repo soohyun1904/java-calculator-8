@@ -23,7 +23,7 @@ public class DelimiterParserTest {
     @DisplayName("기본 구분자로 구분된 문자열을 분리한다.")
     void splitByDefaultDelimiters(){
         String input = "1,2:3,4:5";
-        List<String> result = inputParser.parser(input);
+        List<String> result = inputParser.parse(input);
         assertThat(result).containsExactly("1", "2", "3", "4", "5");
     }
 
@@ -31,7 +31,7 @@ public class DelimiterParserTest {
     @DisplayName("커스텀 구분자로 구분된 문자열을 분리한다.")
     void splitByCustomDelimiters(){
         String input = "//;\\n1;2;3;4;5";
-        List<String> result = inputParser.parser(input);
+        List<String> result = inputParser.parse(input);
         assertThat(result).containsExactly("1", "2", "3", "4", "5");
     }
 
@@ -39,7 +39,7 @@ public class DelimiterParserTest {
     @DisplayName("빈 문자열은 빈 리스트를 반환한다.")
     void splitEmptyList(){
         String input = "";
-        List<String> result = inputParser.parser(input);
+        List<String> result = inputParser.parse(input);
         assertThat(result).isEmpty();
     }
 
@@ -47,7 +47,7 @@ public class DelimiterParserTest {
     @DisplayName("커스텀 구분자 이후 빈 문자열은 빈 리스트를 반환한다.")
     void splitWithCustomDelimitersEmptyList(){
         String input = "//;\\n";
-        List<String> result = inputParser.parser(input);
+        List<String> result = inputParser.parse(input);
         assertThat(result).isEmpty();
     }
 
@@ -55,7 +55,7 @@ public class DelimiterParserTest {
     @DisplayName("연속된 기본 구분자는 빈 리스트를 반환한다.")
     void splitWithConsecutiveDefaultDelimiters(){
         String input = ":::";
-        List<String> result = inputParser.parser(input);
+        List<String> result = inputParser.parse(input);
         assertThat(result).isEmpty();
     }
 
@@ -63,7 +63,7 @@ public class DelimiterParserTest {
     @DisplayName("연속된 커스텀 구분자는 빈 리스트를 반환한다.")
     void splitWithConsecutiveCustomDelimiters(){
         String input = "//;\\n;;;";
-        List<String> result = inputParser.parser(input);
+        List<String> result = inputParser.parse(input);
         assertThat(result).isEmpty();
     }
 
@@ -72,7 +72,7 @@ public class DelimiterParserTest {
     @DisplayName("커스텀 구분자가 없으면 IllegalArgumentException 예외가 발생한다.")
     void emptyDelimiterThrowsException(){
         String input = "//\\n";
-        assertThatThrownBy(() -> inputParser.parser(input))
+        assertThatThrownBy(() -> inputParser.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_EMPTY_DELIMITER.getMessage());
     }
@@ -81,7 +81,7 @@ public class DelimiterParserTest {
     @DisplayName("커스텀 구분자의 길이가 2 이상이면 IllegalArgumentException 예외 발생한다.")
     void longDelimiterThrowsException() {
         String input ="//;;\\n1;;2;;3;;";
-        assertThatThrownBy(() -> inputParser.parser(input))
+        assertThatThrownBy(() -> inputParser.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_DELIMITER_LENGTH.getMessage());
     }
@@ -90,7 +90,7 @@ public class DelimiterParserTest {
     @DisplayName("커스텀 구분자가 숫자라면 IllegalArgumentException 예외 발생한다.")
     void numericDelimiterThrowsException(){
         String input = "//7\\n17273";
-        assertThatThrownBy(() -> inputParser.parser(input))
+        assertThatThrownBy(() -> inputParser.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_DELIMITER_NUMERIC.getMessage());
     }

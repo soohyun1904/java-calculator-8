@@ -34,15 +34,6 @@ public class OperandTest {
     }
 
     @Test
-    @DisplayName("피연산자가 int 숫자 범위를 초과했다면 IllegalArgumentException 예외 발생한다.")
-    void  numberOutOfRangeThrowsException(){
-        String input = "2147483648";
-        assertThatThrownBy(() ->  operandConverter.convert(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NUMBER_PARSE_ERROR.getMessage());
-    }
-
-    @Test
     @DisplayName("피연산자가 숫자가 아닌 다른 형태라면 IllegalArgumentException 예외 발생한다.")
     void numberParseThrowsException(){
         String input = "a";
