@@ -17,7 +17,7 @@ public class CalculatorController {
 
     public void run(){
         String inputValue = inputView.readInput();
-        Number result = calculatorService.calculate(inputValue);
+        double result = calculatorService.calculate(inputValue);
         outputView.printResultMessage(result);
     }
 }

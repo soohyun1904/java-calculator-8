@@ -2,21 +2,18 @@ package calculator.service;
 
 import calculator.domain.Calculator;
 import calculator.domain.Operands;
-import calculator.factory.CalculatorFactory;
 import calculator.factory.OperandsFactory;
 
 public class CalculatorService {
-    private final OperandsFactory operandFactory;
-    private final CalculatorFactory calculatorFactory;
+    private final OperandsFactory operandsFactory;
 
-    public CalculatorService(OperandsFactory operandFactory, CalculatorFactory calculatorFactory) {
-        this.operandFactory = operandFactory;
-        this.calculatorFactory = calculatorFactory;
+    public CalculatorService(OperandsFactory operandsFactory) {
+        this.operandsFactory = operandsFactory;
     }
 
-    public Number calculate(String inputValue){
-        Operands operands = operandFactory.createForm(inputValue);
-        Calculator calculator = calculatorFactory.createForm(operands);
+    public double calculate(String input) {
+        Operands operands = operandsFactory.createForm(input);
+        Calculator calculator = new Calculator(operands);
         return calculator.sum();
     }
 }
