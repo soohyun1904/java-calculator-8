@@ -16,11 +16,11 @@ public class OperandsFactory {
     }
 
     public Operands createForm(String input){
-        List<String> stringNumber = inputParser.parser(input);
-        List<Operand> operandList = stringNumber.stream()
+        List<String> tokens = inputParser.parse(input);
+        List<Operand> operands = tokens.stream()
                 .map(operandConverter::convert)
                 .toList();
 
-        return new Operands(operandList);
+        return new Operands(operands);
     }
 }

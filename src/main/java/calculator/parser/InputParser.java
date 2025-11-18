@@ -3,5 +3,5 @@ package calculator.parser;
 import java.util.List;
 
 public interface InputParser {
-    List<String> parser(String input);
+    List<String> parse(String input);
 }

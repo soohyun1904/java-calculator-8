@@ -14,7 +14,7 @@ public class DelimiterParser implements InputParser {
     }
 
     @Override
-    public List<String> parser(String inputValue) {
+    public List<String> parse(String inputValue) {
         if(isCustomDelimiterFormat(inputValue)){
             return splitWithCustomDelimiter(inputValue);
         }
@@ -44,7 +44,7 @@ public class DelimiterParser implements InputParser {
     private String parseCustomDelimiter(String inputValue) {
         int delimiterEndIndex = inputValue.indexOf(CUSTOM_SUFFIX);
         String delimiter = inputValue.substring(CUSTOM_PREFIX.length(), delimiterEndIndex);
-        validateDelimiter(delimiter);
+        validate(delimiter);
         return delimiter;
     }
 
@@ -53,14 +53,26 @@ public class DelimiterParser implements InputParser {
         return inputValue.substring(delimiterEndIndex + 2);
     }
 
-    private void validateDelimiter(String delimiter) {
-        if(delimiter.isBlank()){
+    private void validate(String delimiter) {
+        validateNotEmpty(delimiter);
+        validateLength(delimiter);
+        validateNotNumeric(delimiter);
+    }
+
+    private void validateNotEmpty(String delimiter) {
+        if (delimiter.isBlank()) {
             throw new IllegalArgumentException(ERROR_EMPTY_DELIMITER.getMessage());
         }
-        if(delimiter.length()>1){
+    }
+
+    private void validateLength(String delimiter) {
+        if (delimiter.length() > 1) {
             throw new IllegalArgumentException(ERROR_DELIMITER_LENGTH.getMessage());
         }
-        if(Character.isDigit(delimiter.charAt(0))){
+    }
+
+    private void validateNotNumeric(String delimiter) {
+        if (Character.isDigit(delimiter.charAt(0))) {
             throw new IllegalArgumentException(ERROR_DELIMITER_NUMERIC.getMessage());
         }
     }
