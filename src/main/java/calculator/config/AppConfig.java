@@ -2,7 +2,6 @@ package calculator.config;
 
 import calculator.controller.CalculatorController;
 import calculator.converter.OperandConverter;
-import calculator.factory.CalculatorFactory;
 import calculator.factory.OperandsFactory;
 import calculator.parser.DelimiterParser;
 import calculator.parser.InputParser;
@@ -31,12 +30,8 @@ public class AppConfig {
         return new OperandsFactory(inputParser(), operandConverter());
     }
 
-    public CalculatorFactory calculatorFactory(){
-        return new CalculatorFactory();
-    }
-
     public CalculatorService calculatorService(){
-        return new CalculatorService(operandsFactory(), calculatorFactory());
+        return new CalculatorService(operandsFactory());
     }
 
     public CalculatorController calculatorController(){
